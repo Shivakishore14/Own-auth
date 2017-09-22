@@ -12,11 +12,13 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var database = "own_auth"
-var user = "test"
-var password = "test"
+var (
+	database = "own_auth"
+	user     = "test"
+	password = "test"
 
-var db *gorm.DB
+	db *gorm.DB
+)
 
 func init() {
 	var err error
@@ -37,9 +39,10 @@ func webresponse(msg string, err error, data interface{}, w http.ResponseWriter)
 	obj.Error = err
 	obj.Data = data
 
-	var resErr error
-	var resTxt string
-
+	var (
+		resErr error
+		resTxt string
+	)
 	if jsonData, e := json.Marshal(obj); e != nil {
 		resErr = e
 	} else {

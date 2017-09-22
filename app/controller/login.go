@@ -33,16 +33,3 @@ func UserLogin(w http.ResponseWriter, r *http.Request) {
 		webresponse("check creds", nil, nil, w)
 	}
 }
-
-//UserSignUp : for creating new user
-func UserSignUp(w http.ResponseWriter, r *http.Request) {
-	username := r.FormValue("username")
-	password := r.FormValue("password")
-	name := r.FormValue("name")
-	phone := r.FormValue("phone")
-	email := r.FormValue("email")
-	user := model.User{UserName: username, Password: password, Name: name, Phone: phone, Email: email}
-
-	msg, err := user.CreateUser(db)
-	webresponse(msg, err, nil, w)
-}
