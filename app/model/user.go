@@ -53,3 +53,33 @@ func (user User) UserData(db *gorm.DB) (User, error) {
 	user.Fields = fields
 	return user, nil
 }
+
+//Delete user
+func (user User) Delete(db *gorm.DB) error {
+	if gobj := db.Where("id=?", user.ID).First(&user); gobj.Error != nil {
+		return gobj.Error
+	}
+	if gobj := db.Delete(&user); gobj.Error != nil {
+		return gobj.Error
+	}
+	return nil
+}
+
+//Update user
+func (user User) Update(db *gorm.DB) error {
+	if gobj := db.Where("id=?", user.ID).First(&user); gobj.Error != nil {
+		return gobj.Error
+	}
+	if gobj := db.Save(&user); gobj.Error != nil {
+		return gobj.Error
+	}
+	return nil
+}
+
+//Create user
+func (user User) Create(db *gorm.DB) error {
+	if gobj := db.Create(&user); gobj.Error != nil {
+		return gobj.Error
+	}
+	return nil
+}

@@ -17,7 +17,7 @@ func LoadRoutes() {
 	api.HandleFunc("/signup", controller.UserSignUp)
 	api.HandleFunc("/addfields", controller.AddFields)
 	api.HandleFunc("/listusers", controller.ListUsers)
-	api.HandleFunc("/user/{id:[0-9]+}", controller.UserProfile)
+	api.HandleFunc("/user/{id:[0-9]+}", controller.User)
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome"))
 	})
