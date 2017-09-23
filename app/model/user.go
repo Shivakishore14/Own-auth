@@ -67,9 +67,6 @@ func (user User) Delete(db *gorm.DB) error {
 
 //Update user
 func (user User) Update(db *gorm.DB) error {
-	if gobj := db.Where("id=?", user.ID).First(&user); gobj.Error != nil {
-		return gobj.Error
-	}
 	if gobj := db.Save(&user); gobj.Error != nil {
 		return gobj.Error
 	}

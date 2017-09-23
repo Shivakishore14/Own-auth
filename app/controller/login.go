@@ -1,7 +1,9 @@
 package controller
 
 import (
-	"fmt"
+	"encoding/json"
+	"io/ioutil"
+	"log"
 	"net/http"
 	"time"
 
@@ -11,10 +13,19 @@ import (
 
 //UserLogin : for Login functionality
 func UserLogin(w http.ResponseWriter, r *http.Request) {
-	username := r.FormValue("username")
-	password := r.FormValue("password")
-	fmt.Println(username, password)
-	user := model.User{UserName: username, Password: password}
+	// username := r.FormValue("username")
+	// password := r.FormValue("password")
+	// fmt.Println(username, password)
+	// user := model.User{UserName: username, Password: password}
+	var user model.User
+	var bodyBytes []byte
+	bodyBytes, _ = ioutil.ReadAll(r.Body)
+
+	if err := json.Unmarshal(bodyBytes, &user); err != nil {
+		log.Println(err)
+		webresponse("Error decoding json", err, nil, w)
+		return
+	}
 	user, check := user.IsValidLogin(db)
 	//user.RegisterLogin(db, check)
 	if check {
