@@ -8,9 +8,8 @@
 		_ownAuth.widget.loadWidget().then(function(){
 			return _ownAuth.widget.login()
 		}).then(function(data){
-			console.log(data);
-			localStorage.setItem("profile", data.profile);
-			localStorage.setItem("token", data.profile);
+			localStorage.setItem("profile", JSON.stringify(data.profile));
+			localStorage.setItem("token", data.token);
 		}).catch(function(err){
 			console.log(err);
 		})

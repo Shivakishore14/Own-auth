@@ -1,5 +1,114 @@
-<div>
-	<input id="ownAuthUsername" placeholder="username">
-	<input id="ownAuthPassword" placeholder="password" type="password">
-	<button id="ownAuthLoginBtn">Submit</button>
+<div id="own-auth-root">
+	<div class="own-auth-overlay"></div>
+	<div class="own-auth-wrapper">
+		<div class="own-auth-login">
+			<div class="own-auth-content-wrapper">
+				<div class="own-auth-header">
+					<h3>Own Auth Login</h3>
+				</div>
+			</div>
+			<hr>
+			<div class="own-auth-error-wrapper">
+				<div class="own-auth-error">
+					<span id="own-auth-error-text"></span>
+				</div>
+			</div>
+			<div class="own-auth-content-wrapper">
+				<input id="ownAuthUsername" placeholder="username"><br>
+				<input id="ownAuthPassword" placeholder="password" type="password"><br>
+				<button id="ownAuthLoginBtn">Login</button>
+			</div>
+			<div class="own-auth-footer">
+				No account ? <span id="own-auth-signup-footer-text"> Signup</span>
+			</div>
+		</div>
+
+		<div class="own-auth-signup">
+			<div class="own-auth-content-wrapper">
+				<div class="own-auth-header">
+					<h3>Own Auth SignUp</h3>
+				</div>
+			</div>
+			<hr>
+			<div class="own-auth-error-wrapper">
+				<div class="own-auth-error">
+					<span id="own-auth-error-text-signup"></span>
+				</div>
+			</div>
+			<div class="own-auth-success-wrapper">
+				<div class="own-auth-success">
+					<span id="own-auth-success-text-signup"></span>
+				</div>
+			</div>
+			<div class="own-auth-content-wrapper">
+				<input id="ownAuthNameSignUp" placeholder="Name"><br>
+				<input id="ownAuthUsernameSignUp" placeholder="username"><br>
+				<input id="ownEmailSignUp" placeholder="Email"><br>
+				<input id="ownPhoneSignUp" placeholder="Phone"><br>
+				<input id="ownAuthPasswordSignUp" placeholder="password" type="password"><br>
+				<button id="ownAuthSignUpBtn">SignUp</button>
+			</div>
+			<div class="own-auth-footer">
+				Have account ? <span id="own-auth-login-footer-text">Login</span>
+			</div>
+		</div>
+	</div>
+	<style>
+	body{
+		margin: 0px;
+	}
+	.own-auth-overlay{
+		position: fixed;
+		z-index: 10;
+		opacity: 0.7;
+		background-color: 000;
+		width: 100%;
+		height: 100%;
+	}
+	.own-auth-wrapper{
+		position: absolute;
+		z-index: 11;
+		background-color: #fff;
+		top:50%;
+		left: 50%;
+		padding: 10px;
+	}
+	.own-auth-content-wrapper input, button {
+		margin-top: 10px;
+		width: 100%;
+		text-align: center;
+	}
+
+	.own-auth-content-wrapper{
+		padding: 10px;
+		text-align: center;
+	}
+
+	.own-auth-error-wrapper{
+		background-color: red;
+		color: #fff;
+		margin-top: -10px;
+		text-align: center;
+	}
+	.own-auth-success-wrapper{
+		background-color: green;
+		color: #fff;
+		margin-top: -10px;
+		text-align: center;
+	}
+	.own-auth-footer{
+		text-align: center;
+		font-size: 12;
+		color: #aaa;
+	}
+	.own-auth-footer #own-auth-signup-text{
+	}
+	.own-auth-footer span{
+		color: #11f;
+		cursor:pointer;
+	}
+	.own-auth-signup{
+		display: none;
+	}
+	</style>
 </div>
