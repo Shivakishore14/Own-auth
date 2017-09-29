@@ -2,6 +2,7 @@
 	var widget = ownAuth.widget = ownAuth.widget || (function() {
 		//console.log("loading widget");
 		var base_url = "http://localhost:9000";
+		var lastRootDisplay;
 		var init = function(config){
 			base_url = config.base_url || base_url;
 		}
@@ -13,6 +14,22 @@
 		});
 		var config = { childList: true, characterData: true, subtree:true };
 
+		var showWidget = function(){
+			ownAuthRoot = document.getElementById("own-auth-root");
+			if (ownAuthRoot == undefined){
+				return (loadWidget());
+			}
+
+			ownAuthRoot.style["display"] = lastRootDisplay;
+		}
+		var hideWidget = function(){
+			ownAuthRoot = document.getElementById("own-auth-root");
+			if (ownAuthRoot == undefined){
+				return "root not found";
+			}
+			lastRootDisplay = ownAuthRoot.style["display"];
+			ownAuthRoot.style["display"] = "none";
+		}
 		var loadWidget = function(){
 			var promise = new Promise(function(resolve, reject) {
 				var xhttp = new XMLHttpRequest();
@@ -22,6 +39,7 @@
 							wrapper = document.getElementsByTagName('html');
 							content = document.createElement('div')
 							content.innerHTML = this.responseText;
+							htmlContent = this.responseText;
 							if (wrapper.length != 0){
 								wrapper[0].appendChild(content);
 
@@ -99,15 +117,19 @@
 		var showLoginScreen = function(){
 			var loginWrapper = document.getElementsByClassName("own-auth-login")[0];
 			var signUpWrapper = document.getElementsByClassName("own-auth-signup")[0];
-			loginWrapper.style.display = "inline-block";
+			var title = document.getElementById("own-auth-title");
+			loginWrapper.style.display = "inline";
 			signUpWrapper.style.display = "none";
+			title.innerHTML = "Own Auth Login";
 			setCssForCentering();
 		}
 		var showSignUpScreen = function(){
 			var loginWrapper = document.getElementsByClassName("own-auth-login")[0];
 			var signUpWrapper = document.getElementsByClassName("own-auth-signup")[0];
+			var title = document.getElementById("own-auth-title");
 			loginWrapper.style.display = "none";
-			signUpWrapper.style.display = "inline-block";
+			signUpWrapper.style.display = "inline";
+			title.innerHTML = "Own Auth SignUp";
 			setCssForCentering();
 		}
 		var signUp = function(){
@@ -147,7 +169,9 @@
 		}
 		return {
 			loadWidget:loadWidget,
-			login:login
+			login:login,
+			show:showWidget,
+			hide:hideWidget
 		}
 	}());
 }(window._ownAuth = window._ownAuth || {}, window, document));

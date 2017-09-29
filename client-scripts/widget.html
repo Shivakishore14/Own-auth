@@ -1,61 +1,60 @@
 <div id="own-auth-root">
 	<div class="own-auth-overlay"></div>
 	<div class="own-auth-wrapper">
-		<div class="own-auth-login">
-			<div class="own-auth-content-wrapper">
+		<div>
+			<div class="own-auth-header-wrapper">
 				<div class="own-auth-header">
-					<h3>Own Auth Login</h3>
+					<img class="own-auth-logo" src="assets/logo.png" width="50" height="50" style="object-fit: cover"/>
+					<span class="own-auth-close-wrapper"><img src="assets/close.png" width="15" height="15" onclick="_ownAuth.widget.hide()"/></span>
+					<h3 id="own-auth-title">Own Auth Login</h3>
 				</div>
 			</div>
-			<hr>
-			<div class="own-auth-error-wrapper">
-				<div class="own-auth-error">
-					<span id="own-auth-error-text"></span>
+			<div class="own-auth-content-wrapper-root own-auth-login">
+				<div class="own-auth-error-wrapper">
+					<div class="own-auth-error">
+						<span id="own-auth-error-text"></span>
+					</div>
+				</div>
+				<div class="own-auth-content-wrapper">
+					<input id="ownAuthUsername" placeholder="username"><br>
+					<input id="ownAuthPassword" placeholder="password" type="password"><br>
+					<button id="ownAuthLoginBtn">Login</button>
+				</div>
+				<div class="own-auth-footer">
+					No account ? <span id="own-auth-signup-footer-text"> Signup</span>
 				</div>
 			</div>
-			<div class="own-auth-content-wrapper">
-				<input id="ownAuthUsername" placeholder="username"><br>
-				<input id="ownAuthPassword" placeholder="password" type="password"><br>
-				<button id="ownAuthLoginBtn">Login</button>
-			</div>
-			<div class="own-auth-footer">
-				No account ? <span id="own-auth-signup-footer-text"> Signup</span>
-			</div>
-		</div>
-
-		<div class="own-auth-signup">
-			<div class="own-auth-content-wrapper">
-				<div class="own-auth-header">
-					<h3>Own Auth SignUp</h3>
+			<div class="own-auth-content-wrapper-root own-auth-signup">
+				<div class="own-auth-error-wrapper">
+					<div class="own-auth-error">
+						<span id="own-auth-error-text-signup"></span>
+					</div>
 				</div>
-			</div>
-			<hr>
-			<div class="own-auth-error-wrapper">
-				<div class="own-auth-error">
-					<span id="own-auth-error-text-signup"></span>
+				<div class="own-auth-success-wrapper">
+					<div class="own-auth-success">
+						<span id="own-auth-success-text-signup"></span>
+					</div>
 				</div>
-			</div>
-			<div class="own-auth-success-wrapper">
-				<div class="own-auth-success">
-					<span id="own-auth-success-text-signup"></span>
+				<div class="own-auth-content-wrapper">
+					<input id="ownAuthNameSignUp" placeholder="Name"><br>
+					<input id="ownAuthUsernameSignUp" placeholder="username"><br>
+					<input id="ownEmailSignUp" placeholder="Email"><br>
+					<input id="ownPhoneSignUp" placeholder="Phone"><br>
+					<input id="ownAuthPasswordSignUp" placeholder="password" type="password"><br>
+					<button id="ownAuthSignUpBtn">SignUp</button>
 				</div>
-			</div>
-			<div class="own-auth-content-wrapper">
-				<input id="ownAuthNameSignUp" placeholder="Name"><br>
-				<input id="ownAuthUsernameSignUp" placeholder="username"><br>
-				<input id="ownEmailSignUp" placeholder="Email"><br>
-				<input id="ownPhoneSignUp" placeholder="Phone"><br>
-				<input id="ownAuthPasswordSignUp" placeholder="password" type="password"><br>
-				<button id="ownAuthSignUpBtn">SignUp</button>
-			</div>
-			<div class="own-auth-footer">
-				Have account ? <span id="own-auth-login-footer-text">Login</span>
+				<div class="own-auth-footer">
+					Have account ? <span id="own-auth-login-footer-text">Login</span>
+				</div>
 			</div>
 		</div>
 	</div>
 	<style>
 	body{
 		margin: 0px;
+	}
+	#own-auth-root *{
+		font-family: "Lato";
 	}
 	.own-auth-overlay{
 		position: fixed;
@@ -71,7 +70,12 @@
 		background-color: #fff;
 		top:50%;
 		left: 50%;
-		padding: 10px;
+		border-radius: 3px;
+		box-shadow: 1px 1px 10px;
+		min-width: 250px;
+	}
+	.own-auth-content-wrapper-root{
+		margin: 10px;
 	}
 	.own-auth-content-wrapper input, button {
 		margin-top: 10px;
@@ -79,7 +83,7 @@
 		text-align: center;
 	}
 
-	.own-auth-content-wrapper{
+	.own-auth-content-wrapper, .own-auth-header-wrapper{
 		padding: 10px;
 		text-align: center;
 	}
@@ -110,5 +114,66 @@
 	.own-auth-signup{
 		display: none;
 	}
+	.own-auth-header-wrapper{
+		background: rgba(211,211,211); /* For browsers that do not support gradients */
+		background: -webkit-radial-gradient(rgba(211,211,211,1),rgba(211,211,211,0.3)); /*Safari 5.1-6*/
+		background: -o-radial-gradient(rgba(211,211,211,1),rgba(211,211,211,0.3)); /*Opera 11.1-12*/
+		background: -moz-radial-gradient(rgba(211,211,211,1),rgba(211,211,211,0.3)); /*Fx 3.6-15*/
+		background: radial-gradient(rgba(211,211,211,1),rgba(211,211,211,0.3)); /*Standard*/
+	}
+	h3{
+		font-size: 18px;
+		font-weight: 400;
+		margin-top: 10px;
+		margin-bottom: 0px;
+		color: #3e3e3e !important;
+	}
+	.own-auth-close-wrapper{
+		padding: 5px;
+		margin: 5px;
+		position: absolute;
+		right: 0%;
+		top: 0%;
+		float: right;
+		border-radius: 15px;
+	}
+	.own-auth-close-wrapper:hover{
+		background-color: #d3d3d3;
+		cursor: pointer;
+	}
+	.own-auth-content-wrapper input{
+		border-radius: 0px;
+		height: 35px;
+		box-shadow: none !important;
+		/* background: transparent; */
+		border: none;
+		border: 1px solid #d3d3d3;
+		color: #000;
+		font-weight: 300;
+		font-size: 14px;
+	}
+
+	.own-auth-content-wrapper input:focus{
+		border: 1px solid #267ba9;
+	}
+	.own-auth-content-wrapper input:focus::-webkit-input-placeholder { color:transparent; }
+	.own-auth-content-wrapper input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+	.own-auth-content-wrapper input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+	.own-auth-content-wrapper input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+	.own-auth-content-wrapper button {
+		border-radius: 0px;
+		outline: none !important;
+		box-shadow: none !important;
+		background: #267ba9;
+		border-radius: 0px;
+		height: 35px;
+		box-shadow: none !important;
+		border: none;
+		border: 1px solid #267ba9;
+		color : #fff;
+	}
+	/*.own-auth-login, .own-auth-signup{
+		margin: 10px;
+	}*/
 	</style>
 </div>
